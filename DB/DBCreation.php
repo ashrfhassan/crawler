@@ -5,7 +5,6 @@ include_once './DBConnection.php';
 function createDB($dbConnection)
 {
     $statement = 'CREATE TABLE IF NOT EXISTS `links` (`id` int(10) UNSIGNED NOT NULL,
-`parent_link` text COLLATE utf8_unicode_ci,
 `link` text COLLATE utf8_unicode_ci NOT NULL)
  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
  ALTER TABLE `links` ADD PRIMARY KEY (`id`);
