@@ -12,4 +12,4 @@ ___________________________________________________________________
 
 class server url to get index.php with queryString "url".
 
-ex: {serverURL}/?url=https://www.homegate.ch/mieten/immobilien/kanton-zuerich/trefferliste
+ex: {serverURL}/?url=https://www.homegate.ch/mieten/108824868

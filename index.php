@@ -8,19 +8,22 @@ error_reporting(E_ERROR | E_PARSE);
 if (!isset($_GET['url']) || empty($_GET['url'])) {
     echo "wrong url";
 }
+
+$testUrl = "https://www.homegate.ch/mieten/108824869";
 $url = $_GET['url'];
 $crawler = new Crawler();
 $dom = $crawler->getPageContent($url);
-if(!$dom)
+if (!$dom)
+    return 0;
+$links = $crawler->getUrls($dom, true);
+$crawler->insertLinks(DBConnection::getDBConnection(), $links);
+
+echo "</br><h2>Test url : <p style='color:red'>$testUrl</p></h2></br>";
+
+$dom = $crawler->getPageContent($testUrl);
+if (!$dom)
     return 0;
 $links = $crawler->getUrls($dom);
 $crawler->insertLinks(DBConnection::getDBConnection(), $links);
-foreach ($links as $link) {
-    $dom = $crawler->getPageContent($link);
-    if($dom) {
-        $subLinks = $crawler->getUrls($dom);
-        $crawler->insertLinks(DBConnection::getDBConnection(), $subLinks);
-    }
-}
 
-echo "Done";
+echo "<center><h2 style='color:red'>Done</h2></center>";
